@@ -1,7 +1,7 @@
 {
     "routes": [
         {
-            "route": "/Contributor/*",
+            "route": "/authenticated/*",
             "allowedRoles": [ "authenticated" ]
         }
     ],
