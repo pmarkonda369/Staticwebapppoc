@@ -1,14 +1,41 @@
 {
     "routes": [
         {
-            "route": "/authenticated/*",
-            "allowedRoles": [ "authenticated" ]
+            "route": "/.auth/login/aad",
+            "statusCode": "401"
         },
         {
-            "route": "/admin/*",
-            "allowedRoles": [ "admin" ]
+            "route": "/.auth/login/aad/callback",
+            "statusCode": "401"
+        },
+        {
+            "route": "/.auth/logout",
+            "statusCode": "302"
+        },
+        {
+            "route": "/.auth/me",
+            "statusCode": "200"
+        },
+        {
+            "route": "/",
+            "serve": "/index.html",
+            "statusCode": "200"
+        },
+        {
+            "route": "/*",
+            "serve": "/index.html",
+            "statusCode": "200"
         }
     ],
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": ["/api/*"]
+    },
+    "rewrites": [],
+    "proxies": {},
+    "headers": {
+        "Cache-Control": "no-cache"
+    },
     "auth": {
         "identityProviders": {
             "azureActiveDirectory": {
@@ -19,14 +46,6 @@
                     "clientSecretSettingName": "<your_client_secret_setting_name>"
                 }
             }
-        },
-        "routes": {
-            "^/admin/.*$": {
-                "allowedRoles": [ "admin" ]
-            }
         }
-    },
-    "globalHeaders": {
-        "Cache-Control": "no-cache"
     }
 }
