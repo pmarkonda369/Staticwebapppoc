@@ -1,51 +1,14 @@
 {
-    "routes": [
-        {
-            "route": "/.auth/login/aad",
-            "statusCode": "401"
-        },
-        {
-            "route": "/.auth/login/aad/callback",
-            "statusCode": "401"
-        },
-        {
-            "route": "/.auth/logout",
-            "statusCode": "302"
-        },
-        {
-            "route": "/.auth/me",
-            "statusCode": "200"
-        },
-        {
-            "route": "/",
-            "serve": "/index.html",
-            "statusCode": "200"
-        },
-        {
-            "route": "/*",
-            "serve": "/index.html",
-            "statusCode": "200"
-        }
-    ],
-    "navigationFallback": {
-        "rewrite": "/index.html",
-        "exclude": ["/api/*"]
-    },
-    "rewrites": [],
-    "proxies": {},
-    "headers": {
-        "Cache-Control": "no-cache"
-    },
-    "auth": {
-        "identityProviders": {
-            "azureActiveDirectory": {
-                "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-                "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/45165946-d5b0-4c17-886f-178ab1f93ed1",
-                    "clientIdSettingName": "<your_client_id_setting_name>",
-                    "clientSecretSettingName": "<your_client_secret_setting_name>"
-                }
-            }
-        }
+  "routes": [
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
+  ],
+  "responseOverrides": {
+    "401": {
+      "statusCode": 302,
+      "redirect": "/.auth/login/aad"
+    }
+  }
 }
