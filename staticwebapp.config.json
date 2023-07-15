@@ -3,6 +3,10 @@
         {
             "route": "/authenticated/*",
             "allowedRoles": [ "authenticated" ]
+        },
+        {
+            "route": "/admin/*",
+            "allowedRoles": [ "admin" ]
         }
     ],
     "auth": {
@@ -10,10 +14,15 @@
             "azureActiveDirectory": {
                 "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
                 "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/31a2fec0-266b-4c67-b56e-2796d8f59c36",
-                    "clientIdSettingName": "",
-                    "clientSecretSettingName": ""
+                    "openIdIssuer": "https://login.microsoftonline.com/45165946-d5b0-4c17-886f-178ab1f93ed1",
+                    "clientIdSettingName": "<your_client_id_setting_name>",
+                    "clientSecretSettingName": "<your_client_secret_setting_name>"
                 }
+            }
+        },
+        "routes": {
+            "^/admin/.*$": {
+                "allowedRoles": [ "admin" ]
             }
         }
     },
