@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,23 +21,7 @@
     <hr>
     <div>
         <ul>
-            <li><a href="/anonymous/">All users can access this page</a></li>
-            <li><a href="/authenticated/">All authenticated users can access this page</a></li>
-            <!-- <li><a href="/admin/">Only users in the admin custom role can access this page</a></li> -->
+            <li><a href="/anonymous">All users can access this page</a></li>
+            <li><a href="/authenticated">All authenticated users can access this page</a></li>
+            <li><a href="/admin">Only users in the admin custom role can access this page</a></li>
         </ul>
-    </div>
-    <hr>
-    <pre></pre>
-    <script>
-        async function getUserInfo() {
-            const response = await fetch('/.auth/me');
-            const user = await response.json();
-            const pre = document.querySelector('pre');
-            pre.textContent = JSON.stringify(user, null, 2);
-        }
-
-        getUserInfo();
-    </script>
-</body>
-
-</html>
