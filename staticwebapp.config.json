@@ -1,4 +1,4 @@
 {
-  "route": "/profile/index.html",
+  "route": "/profile*",
   "allowedRoles": ["authenticated"]
 }
